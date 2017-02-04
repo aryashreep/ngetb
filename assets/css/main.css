@@ -58,7 +58,15 @@
 
 --------------------------------------------------------
 */
-
+/* All three CSS files above will be loaded from
+   this single document. */
+@import url('./bootstrap.min.css');
+@import url('./bootstrap-theme.min.css');
+@import url('./font-awesome.min.css');
+@import url('./ionicons.min.css');
+@import url('./popup.css');
+@import url('./owl.carousel.css');
+@import url('./owl.theme.css');
                     /*-----------------------------------
                        1 ) Font Import From Google Fonts
                       -----------------------------------*/
