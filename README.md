@@ -2,10 +2,10 @@
 eTechBuddy.com is Arya's portfolio and blogging site.
 
 <!-- Badges section here. -->
-[![Build Status](https://img.shields.io/travis/aryashreep/ngetb/master.svg?label=travis)][travis-badge-url]
+[![Build Status](https://img.shields.io/travis/aryashreep/ngetb/master.svg?label=travis)](https://travis-ci.org/aryashreep/ngetb)
 [![CircleCI branch](https://img.shields.io/circleci/project/github/aryashreep/ngetb/master.svg?label=circleci)](https://circleci.com/gh/aryashreep/ngetb)
-[![Dependency Status][david-badge]][david-badge-url]
-[![devDependency Status][david-dev-badge]][david-dev-badge-url]
+[![Dependency Status](https://david-dm.org/aryashreep/ngetb.svg)](https://david-dm.org/aryashreep/ngetb)
+[![devDependency Status](https://david-dm.org/aryashreep/ngetb/dev-status.svg)](https://david-dm.org/aryashreep/ngetb?type=dev)
 
 [![npm](https://img.shields.io/npm/v/%40angular/cli.svg)][npm-badge-url]
 [![npm](https://img.shields.io/npm/v/%40angular/cli/next.svg)][npm-badge-url]
