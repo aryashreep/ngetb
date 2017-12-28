@@ -1,4 +1,4 @@
-#eTechBuddy.com
+##eTechBuddy.com
 eTechBuddy.com is Arya's portfolio and blogging site.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
