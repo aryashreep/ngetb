@@ -1,108 +1,30 @@
-dist: trusty
-sudo: false
-
-addons:
-  chrome: stable
-
 language: node_js
+node_js:
+  - "7"
+sudo: true
+dist: trusty
 
-cache:
-  directories:
-     - ./node_modules
+branches:
+  only:
+  - master
 
-stages:
-  - build
-  - test
-  - name: optional
-    if: (NOT type IN (pull_request)) AND (branch = master)
-  - deploy
+before_script:
+ - export CHROME_BIN=/usr/bin/google-chrome
+ - export DISPLAY=:99.0
+ - sh -e /etc/init.d/xvfb start
+ - sudo apt-get update
+ - sudo apt-get install -y libappindicator1 fonts-liberation
+ - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ - sudo dpkg -i google-chrome*.deb
 
-matrix:
-  fast_finish: true
-  allow_failures:
-    - env: nightly
-    - env: ng2
-    - node_js: "7"
-    - node_js: "8"
-  include:
-    # Build stage
-    - stage: build
-      script: npm run lint
-      env: lint
-    - script: npm run build
-      env: build
+script: 
+  - ng test --watch false -cc
+  - npm run e2e
 
-    # Test stage
-    - stage: test
-      script: npm run test
-      env: test
-    - node_js: "6"
-      os: linux
-      script: node tests/run_e2e.js --nb-shards=4 --shard=0 --nosilent
-      env: e2e-0
-    - node_js: "6"
-      os: linux
-      script: node tests/run_e2e.js --nb-shards=4 --shard=1 --nosilent
-      env: e2e-1
-    - node_js: "6"
-      os: linux
-      script: node tests/run_e2e.js --nb-shards=4 --shard=2 --nosilent
-      env: e2e-2
-    - node_js: "6"
-      os: linux
-      script: node tests/run_e2e.js --nb-shards=4 --shard=3 --nosilent
-      env: e2e-3
-    - node_js: "6"
-      os: linux
-      script: node tests/run_e2e.js --eject "--glob=tests/build/**"
-      env: eject
-
-    # Optional stage.
-    - stage: optional
-      node_js: "6"
-      os: linux
-      script: node tests/run_e2e.js --ng2 "--glob=tests/build/**"
-      env: ng2
-    - node_js: "6"
-      os: linux
-      script: node tests/run_e2e.js --ng4 "--glob=tests/build/**"
-      env: ng4
-    - node_js: "6"
-      os: linux
-      script: node tests/run_e2e.js --nightly "--glob=tests/build/**"
-      env: nightly
-    - node_js: "7"
-      os: linux
-      script: node tests/run_e2e.js "--glob=tests/build/**"
-      env: node7
-    - node_js: "8"
-      os: linux
-      script: node tests/run_e2e.js "--glob=tests/build/**"
-      env: node8
-
-    # Deploy stage
-    - stage: deploy
-      script: skip
-      env: builds
-      deploy:
-      - provider: script
-        script: node scripts/git-builds.js
-        skip_cleanup: true
-        on:
-          all_branches: true
-    - script: skip
-      env: publish
-      deploy:
-      - provider: script
-        script: node scripts/publish/publish.js
-        skip_cleanup: true
-        on:
-          tags: true
-
-
-before_install:
-  # Install npm 5.
-  - npm install -g npm@~5.3.0
-
-install:
-  - npm install
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  local_dir: dist
+  on:
+    branch: master
