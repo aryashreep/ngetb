@@ -2,7 +2,7 @@
 eTechBuddy.com is Arya's portfolio and blogging site.
 
 <!-- Badges section here. -->
-[![Build Status](https://api.travis-ci.org/aryashreep/ngetb.svg?branch=master)][travis-badge-url]
+(https://api.travis-ci.org/aryashreep/ngetb.svg?branch=master)
 [![CircleCI branch](https://img.shields.io/circleci/project/github/aryashreep/ngetb/master.svg?label=circleci)](https://circleci.com/gh/aryashreep/ngetb)
 [![Dependency Status][david-badge]][david-badge-url]
 [![devDependency Status][david-dev-badge]][david-dev-badge-url]
