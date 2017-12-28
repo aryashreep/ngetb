@@ -1,6 +1,22 @@
 ## eTechBuddy.com
 eTechBuddy.com is Arya's portfolio and blogging site.
 
+<!-- Badges section here. -->
+[![Build Status](https://api.travis-ci.org/aryashreep/ngetb.svg?branch=master)][travis-badge-url]
+[![CircleCI branch](https://img.shields.io/circleci/project/github/aryashreep/ngetb/master.svg?label=circleci)](https://circleci.com/gh/aryashreep/ngetb)
+[![Dependency Status][david-badge]][david-badge-url]
+[![devDependency Status][david-dev-badge]][david-dev-badge-url]
+
+[![npm](https://img.shields.io/npm/v/%40angular/cli.svg)][npm-badge-url]
+[![npm](https://img.shields.io/npm/v/%40angular/cli/next.svg)][npm-badge-url]
+[![npm](https://img.shields.io/npm/l/@angular/cli.svg)][npm-badge-url]
+[![npm](https://img.shields.io/npm/dm/@angular/cli.svg)][npm-badge-url]
+
+[![Caretaker](https://img.shields.io/badge/caretaker-filipesilva-blue.svg)](https://github.com/aryashreep)
+
+[![GitHub forks](https://img.shields.io/github/forks/angular/angular-cli.svg?style=social&label=Fork)](https://github.com/angular/angular-cli/fork)
+[![GitHub stars](https://img.shields.io/github/stars/angular/angular-cli.svg?style=social&label=Star)](https://github.com/angular/angular-cli)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
 
 ## Development server
