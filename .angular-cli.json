@@ -10,8 +10,13 @@
       "assets": [
         "assets",
         "favicon.ico",
+		"browserconfig.xml",
+		"crossdomain.xml",
+		"humans.txt",
+		"robots.txt",
+		"404.html",
 		"CNAME",
-		"404.html"
+		"README.md"
       ],
       "index": "index.html",
       "main": "main.ts",
