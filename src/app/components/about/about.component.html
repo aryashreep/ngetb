@@ -1,0 +1,30 @@
+<!-- Profile Page --> 
+<div class="profile-page page">
+	<div class="row no-gutters">
+		<!--SIDEBAR-->
+		<app-sidebar></app-sidebar>
+		<!--SIDEBAR-->
+		<!-- Profile Page Content -->
+		<div class="content-container col-md-9 col-sm-12">
+			<!-- Story of Glory -->
+			<div class="clearfix">
+				<h2 class="small-heading">ABOUT US</h2>
+				<div class="row">
+					<div class="profile-controls">
+						<button class="filter button-active" data-filter="profile" [routerLink]="['/about']">Profile</button>
+						<button class="filter" data-filter="delegate">Delegate</button>
+						<!--<button class="filter" data-filter="projects">Projects</button>-->
+					</div>					
+				</div>
+				<div class="row no-gutters">
+					<!-- About us content goes here -->
+					<div *ngFor="let article of _articlesArray">
+						<div [innerHTML]="article.articleBody">{{article.articleBody}}</div>
+					</div>
+				</div>
+			</div>
+			<!-- Footer -->
+			<app-footer></app-footer>
+		</div>
+	</div>
+</div>

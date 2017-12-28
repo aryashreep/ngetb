@@ -18,10 +18,17 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "styles.css"
-      ],
-      "scripts": [],
+	  "styles": [
+	    "styles.scss",
+	    "../node_modules/bootstrap/scss/bootstrap.scss",
+		"../node_modules/font-awesome/scss/font-awesome.scss",
+		"../node_modules/ionicons/dist/scss/ionicons.scss"		
+	  ],
+	  "scripts": [
+	    "../node_modules/jquery/dist/jquery.min.js",
+	    "../node_modules/popper.js/dist/umd/popper.min.js",
+	    "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+	  ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
