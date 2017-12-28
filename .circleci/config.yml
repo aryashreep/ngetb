@@ -1,221 +1,27 @@
 version: 2
 
-# Settings common to each job.
-anchor_1: &defaults
-  working_directory: ~/ngetb
-  docker:
-    - image: angular/ngcontainer:0.0.5
-
-# Restore cache based on package-lock.json checksum for branch.
-anchor_2: &restore_cache_defaults
-    key: ngetb-{{ checksum "package-lock.json" }}
-
-# Attach workspace that contains:
-# - dist/ : built cli
-# - ngetb-e2e-default/ : initialized e2e test project
-anchor_3: &attach_workspace_defaults
-    at: /workspace
-
 jobs:
-  build:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - run: node --version
-      - run: npm --version
-      - run: npm install --no-save
-      - run: npm run build
-      - save_cache:
-          key: ngetb-{{ checksum "package-lock.json" }}
-          paths:
-            - "node_modules"
-
-  lint:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - run: npm run lint
-
-  test:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - run: npm run test
-
-# E2E test for current Angular.
-  e2e-setup:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - run: mkdir /workspace
-      - run: mkdir /workspace/ngetb-e2e-default
-      # Ignore all tests, we just want the setup step to persist it to the workspace.
-      - run: node tests/run_e2e.js --tmpdir=/workspace/ngetb-e2e-default --ignore=**/*
-      - run: mv dist /workspace/
-      - persist_to_workspace:
-          root: /workspace
-          paths:
-            - dist/
-            - ngetb-e2e-default/
-
-  e2e-0:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - attach_workspace:
-          <<: *attach_workspace_defaults
-      - run: cp -r /workspace/dist/ ./
-      - run: xvfb-run -a node tests/run_e2e.js --nobuild --reuse=/workspace/ngetb-e2e-default/test-project --nb-shards=4 --shard=0 --nosilent
-
-  e2e-1:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - attach_workspace:
-          <<: *attach_workspace_defaults
-      - run: cp -r /workspace/dist/ ./
-      - run: xvfb-run -a node tests/run_e2e.js --nobuild --reuse=/workspace/ngetb-e2e-default/test-project --nb-shards=4 --shard=1 --nosilent
-
-  e2e-2:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - attach_workspace:
-          <<: *attach_workspace_defaults
-      - run: cp -r /workspace/dist/ ./
-      - run: xvfb-run -a node tests/run_e2e.js --nobuild --reuse=/workspace/ngetb-e2e-default/test-project --nb-shards=4 --shard=2 --nosilent
-
-  e2e-3:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - attach_workspace:
-          <<: *attach_workspace_defaults
-      - run: cp -r /workspace/dist/ ./
-      - run: xvfb-run -a node tests/run_e2e.js --nobuild --reuse=/workspace/ngetb-e2e-default/test-project --nb-shards=4 --shard=3 --nosilent
-
-# E2E test for Angular nightly.
-  e2e-setup-nightly:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - run: mkdir /workspace
-      - run: mkdir /workspace/ngetb-e2e-nightly
-      # Ignore all tests, we just want the setup step to persist it to the workspace.
-      - run: node tests/run_e2e.js --tmpdir=/workspace/ngetb-e2e-nightly --ignore=**/* --nightly
-      - run: mv dist /workspace/
-      - persist_to_workspace:
-          root: /workspace
-          paths:
-            - dist/
-            - ngetb-e2e-nightly/
-
-  e2e-0-nightly:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - attach_workspace:
-          <<: *attach_workspace_defaults
-      - run: cp -r /workspace/dist/ ./
-      - run: xvfb-run -a node tests/run_e2e.js --nobuild --reuse=/workspace/ngetb-e2e-nightly/test-project --nb-shards=4 --shard=0 --nosilent --nightly
-
-  e2e-1-nightly:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - attach_workspace:
-          <<: *attach_workspace_defaults
-      - run: cp -r /workspace/dist/ ./
-      - run: xvfb-run -a node tests/run_e2e.js --nobuild --reuse=/workspace/ngetb-e2e-nightly/test-project --nb-shards=4 --shard=1 --nosilent --nightly
-
-  e2e-2-nightly:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - attach_workspace:
-          <<: *attach_workspace_defaults
-      - run: cp -r /workspace/dist/ ./
-      - run: xvfb-run -a node tests/run_e2e.js --nobuild --reuse=/workspace/ngetb-e2e-nightly/test-project --nb-shards=4 --shard=2 --nosilent --nightly
-
-  e2e-3-nightly:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *restore_cache_defaults
-      - attach_workspace:
-          <<: *attach_workspace_defaults
-      - run: cp -r /workspace/dist/ ./
-      - run: xvfb-run -a node tests/run_e2e.js --nobuild --reuse=/workspace/ngetb-e2e-nightly/test-project --nb-shards=4 --shard=3 --nosilent --nightly
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - lint:
-          requires:
-            - build
-      - test:
-          requires:
-            - build
-      # E2E test for current Angular.
-      - e2e-setup:
-          requires:
-            - build
-      - e2e-0:
-          requires:
-            - e2e-setup
-      - e2e-1:
-          requires:
-            - e2e-setup
-      - e2e-2:
-          requires:
-            - e2e-setup
-      - e2e-3:
-          requires:
-            - e2e-setup
-      # E2E test for Angular nightly.
-      - e2e-setup-nightly:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
-      - e2e-0-nightly:
-          requires:
-            - e2e-setup-nightly
-      - e2e-1-nightly:
-          requires:
-            - e2e-setup-nightly
-      - e2e-2-nightly:
-          requires:
-            - e2e-setup-nightly
-      - e2e-3-nightly:
-          requires:
-            - e2e-setup-nightly
+    build:
+        working_directory: ~/ngetb
+        # The primary container is an instance of the first list image listed. Your build commands run in this container.
+        docker:
+            - image: circleci/node:6-browsers
+              environment:
+                  CHROME_BIN: "/usr/bin/google-chrome"
+        steps:
+            - checkout
+            - run:
+                name: Install node_modules with npm
+                command: npm install
+            - save_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+                paths:
+                    - ./node_modules
+            - run:
+                name: Install ngetb
+                command: sudo npm install -g @angular/cli@latest
+            - run:
+                name: Run unit tests with karma
+                command: ng test
+            - store_test_results:
+                path: test-results.xml
