@@ -6,7 +6,7 @@ import { Articles } from '../interface/articles';
 
 @Injectable()
 export class ArticlesService {
-  private _articlesURL = 'http://localhost:4201/assets/data/api/articles.json';
+  private _articlesURL = 'https://www.etechbuddy.com//assets/data/api/articles.json';
   constructor( private http: Http) {  
   }
   
