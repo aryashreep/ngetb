@@ -7,15 +7,14 @@ eTechBuddy.com is Arya's portfolio and blogging site.
 [![Dependency Status](https://david-dm.org/aryashreep/ngetb.svg)](https://david-dm.org/aryashreep/ngetb)
 [![devDependency Status](https://david-dm.org/aryashreep/ngetb/dev-status.svg)](https://david-dm.org/aryashreep/ngetb?type=dev)
 
-[![npm](https://img.shields.io/npm/v/%40angular/cli.svg)][npm-badge-url]
-[![npm](https://img.shields.io/npm/v/%40angular/cli/next.svg)][npm-badge-url]
-[![npm](https://img.shields.io/npm/l/@angular/cli.svg)][npm-badge-url]
-[![npm](https://img.shields.io/npm/dm/@angular/cli.svg)][npm-badge-url]
+[![npm](https://img.shields.io/npm/v/%40angular/cli.svg)](https://www.npmjs.com/package/@angular/cli)
+[![npm](https://img.shields.io/npm/v/%40angular/cli/next.svg)](https://www.npmjs.com/package/@angular/cli)
 
-[![Caretaker](https://img.shields.io/badge/caretaker-filipesilva-blue.svg)](https://github.com/aryashreep)
 
-[![GitHub forks](https://img.shields.io/github/forks/angular/angular-cli.svg?style=social&label=Fork)](https://github.com/angular/angular-cli/fork)
-[![GitHub stars](https://img.shields.io/github/stars/angular/angular-cli.svg?style=social&label=Star)](https://github.com/angular/angular-cli)
+[![Caretaker](https://img.shields.io/badge/caretaker-aryashreep-blue.svg)](https://github.com/aryashreep)
+
+[![GitHub forks](https://img.shields.io/github/forks/aryashreep/ngetb.svg?style=social&label=Fork)](https://github.com/aryashreep/ngetb/fork)
+[![GitHub stars](https://img.shields.io/github/stars/aryashreep/ngetb.svg?style=social&label=Star)](https://github.com/aryashreep/ngetb)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
 
