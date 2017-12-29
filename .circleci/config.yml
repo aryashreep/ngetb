@@ -23,5 +23,3 @@ jobs:
             - run:
                 name: Run unit tests with karma
                 command: ng test
-            - store_test_results:
-                path: test-results.xml
