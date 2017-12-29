@@ -2,7 +2,6 @@ version: 2
 
 jobs:
     karma:
-        <<: *job_defaults
         working_directory: ~/ngetb
         # The primary container is an instance of the first list image listed. Your test commands run in this container.
         docker:
