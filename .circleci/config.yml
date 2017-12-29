@@ -33,6 +33,8 @@ jobs:
             - run:
                 name: Run unit tests with karma
                 command: ng test --watch=false
+            - store_artifacts:
+                path: $CIRCLE_TEST_REPORTS/test-results.xml
             - store_test_results:
                 path: $CIRCLE_TEST_REPORTS/test-results.xml
 
