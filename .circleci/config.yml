@@ -3,6 +3,11 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+
+general: 
+  artifacts: 
+    - $CIRCLE_TEST_REPORTS
+
 jobs:
     karma:
         working_directory: ~/ngetb
@@ -33,10 +38,9 @@ jobs:
             - run:
                 name: Run unit tests with karma
                 command: ng test --watch=false
-            - store_artifacts:
-                path: $CIRCLE_TEST_REPORTS/test-results.xml
+                
             - store_test_results:
-                path: $CIRCLE_TEST_REPORTS/test-results.xml
+                path: test-results.xml         
 
 workflows:
   version: 2
