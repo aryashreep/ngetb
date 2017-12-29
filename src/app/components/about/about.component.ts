@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ArticlesService } from '../../service/articles.service';
 import { Articles } from '../../interface/articles';
