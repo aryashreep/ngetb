@@ -23,7 +23,10 @@ script:
   - ng test --watch false -cc
   - ng e2e
   - ng build --prod --build-optimizer --no-progress
-  - angular-cli-ghpages --no-silent --branch=master --repo=https://${GITHUB_TOKEN}@github.com/aryashreep/aryashreep.github.io.git --name="aryashreep" --email=aryashree@etechbuddy.com
+  - git remote set-url origin git@github.com:aryashreep/aryashreep.github.io.git
+  - git config --global user.email "aryashree@etechbuddy.com"
+  - git config --global user.name "aryashreep"
+  - angular-cli-ghpages --no-silent --branch=master
 
 deploy:
   provider: pages
