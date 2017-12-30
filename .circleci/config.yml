@@ -37,7 +37,7 @@ jobs:
                 command: ng test --watch=false
 
             - store_test_results:
-                path: test-results.xml         
+                path: test-results.xml
 
 workflows:
   version: 2

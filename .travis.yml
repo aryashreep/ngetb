@@ -8,6 +8,7 @@ dist: trusty
 branches:
   only:
   - master
+  - /^(?i:feature)-.*$/
 
 before_script:
  - export CHROME_BIN=/usr/bin/google-chrome
@@ -21,3 +22,16 @@ before_script:
 script: 
   - ng test --watch false -cc
   - ng e2e
+  - ng build --prod --build-optimizer --no-progress
+  - git remote set-url origin git@github.com:aryashreep/aryashreep.github.io.git
+  - git config --global user.email "aryashree@etechbuddy.com"
+  - git config --global user.name "aryashreep"
+  - angular-cli-ghpages --no-silent --branch=master
+
+deploy:
+  provider: pages
+  skip_cleanup: false
+  github_token: ${GITHUB_TOKEN} # Set in travis-ci.org dashboard
+  local_dir: dist
+  on:
+    branch: master
