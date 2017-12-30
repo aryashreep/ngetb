@@ -23,7 +23,7 @@ script:
   - ng test --watch false -cc
   - ng e2e
   - ng build --prod --build-optimizer --no-progress
-  - angular-cli-ghpages --repo=https://b33bd81ca4bdd442ffb2cfd2dde934832aafd668@github.com/aryashreep/aryashreep.github.io.git --name="aryashreep" --email=aryashree@etechbuddy.com
+  - angular-cli-ghpages  --branch=master --repo=https://b33bd81ca4bdd442ffb2cfd2dde934832aafd668@github.com/aryashreep/aryashreep.github.io.git --name="aryashreep" --email=aryashree@etechbuddy.com
 
 deploy:
   provider: pages
