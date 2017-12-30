@@ -36,16 +36,8 @@ jobs:
                 name: Run unit tests with karma
                 command: ng test --watch=false
 
-            - run:
-                name: Deploy to production
-                command: |
-                  git remote set-url --add origin git@github.com:aryashreep/ngetb.git
-                  ng build --prod --build-optimizer --no-progress && angular-cli-ghpages --branch master
-                
             - store_test_results:
                 path: test-results.xml
-            
-            
 
 workflows:
   version: 2
