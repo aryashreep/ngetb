@@ -1,8 +1,7 @@
 language: node_js
 node_js:
   - node
-  - "8"  
-  - "7"
+  - "8"
 sudo: true
 dist: trusty
 
@@ -22,11 +21,3 @@ before_script:
 script: 
   - ng test --watch false -cc
   - ng e2e
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-  local_dir: dist
-  on:
-    branch: master
