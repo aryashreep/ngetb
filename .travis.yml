@@ -24,3 +24,11 @@ script:
   - ng e2e
   - ng build --prod --build-optimizer --no-progress
   - angular-cli-ghpages --repo=https://b33bd81ca4bdd442ffb2cfd2dde934832aafd668@github.com/aryashreep/aryashreep.github.io.git --name="aryashreep" --email=aryashree@etechbuddy.com
+
+deploy:
+  provider: pages
+  skip_cleanup: false
+  github_token: b33bd81ca4bdd442ffb2cfd2dde934832aafd668 # Set in travis-ci.org dashboard
+  local_dir: dist
+  on:
+    branch: master
